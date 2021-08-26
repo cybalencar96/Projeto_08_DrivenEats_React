@@ -5,6 +5,8 @@
 /.pnp
 .pnp.js
 
+/Projeto_DrivenEats
+
 # testing
 /coverage
 
