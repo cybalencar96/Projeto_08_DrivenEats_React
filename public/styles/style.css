@@ -306,3 +306,7 @@ main > div:last-child {
 .visuallyHidden {
     opacity: 0;
 }
+
+.send-btn-enable {
+    background-color: #32B72F;
+}

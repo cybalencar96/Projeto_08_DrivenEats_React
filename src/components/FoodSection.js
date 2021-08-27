@@ -4,30 +4,31 @@ export default function FoodSection(props) {
 
     const {
         myKey,
-        foodType,
-        foods
+        foods,
+        isSectionSelected
     } = props
 
     //possíveis soluções para renderizar o desselecionar
     //array com informações no pai de quem ta slecionado
     //passar onClick funcao como props do Food. e dentro de Food chamar essa funcao dentro de uma div pelo onClick 
 
-    const foodsByType = foods.filter(food => {
-        if (food.type === foodType) {
-            return true;
-        }
-        return false;
-    });
-
     const sectionTitle = ["Primeiro, seu prato","Segundo, sua bebida","Terceiro, sua sobremesa"];
-    
+    const [qtyFoodsSelected, setQtyFoodsSelected] = useState(0);
+
+    //atualizará quantos itens dessa sessão foram selecionados
+    const foodSelect = (selectTrue) => {
+        if (selectTrue) setQtyFoodsSelected(qtyFoodsSelected + 1);
+        if (!selectTrue) setQtyFoodsSelected(qtyFoodsSelected - 1);
+        isSectionSelected(qtyFoodsSelected > 0 ? true : false);
+    }
+
     return(
         <div className="middle-bars">
             <h1 className="font-righteous">{sectionTitle[myKey]}</h1>
             <div className="itens">
                 {
-                    foodsByType.map((food,index) => (
-                            <Food myKey={index} attributes={food}/>
+                    foods.map((food,index) => (
+                            <Food myKey={index} foodCount={foodSelect} attributes={food}/>
                     ))
                 }
             </div>
@@ -49,15 +50,15 @@ function Food(props) {
     const [select, setSelect] = useState(false);
     
     function toggleSelect() {
+        props.foodCount(!select);
         setSelect(!select);
     }
 
     const [qty, setQty] = useState(1);
     function changeQty(op) {
         if (op === "-") {
-            if (qty > 1) {
-                setQty(qty-1);
-            }
+            if (qty > 1) setQty(qty-1);
+            if (qty === 1) toggleSelect();
             return;
         }
         setQty(qty+1);

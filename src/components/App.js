@@ -2,11 +2,16 @@ import FoodSection from "./FoodSection";
 import Topbar from "./Topbar";
 import BottomBar from "./BottomBar";
 import vars from "../vars"
-
+import { useState } from "react";
 
 export default function App () {
     const foodTypes = ["plate","drink","dessert"];
+    const [sectionSelected, setSectionSelected] = useState(false);
 
+    const isSectionSelected = (bool) => {
+        setSectionSelected(bool);
+        console.log(sectionSelected)
+    }
     return (
         <>
             <Topbar />
@@ -15,8 +20,8 @@ export default function App () {
                     foodTypes.map((foodType,index) =>  (               
                     <FoodSection 
                          myKey={index} 
-                         foodType={foodType} 
-                         foods={vars.foods}
+                         foods={vars.foods.filter((food => food.type === foodType))}
+                         isSectionSelected={isSectionSelected}
                     />))
                 }
             </main>
