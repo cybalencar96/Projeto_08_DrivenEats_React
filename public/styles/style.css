@@ -307,6 +307,6 @@ main > div:last-child {
     opacity: 0;
 }
 
-.send-btn-enable {
+.bottom-bar .send-btn-enable {
     background-color: #32B72F;
 }

@@ -1,10 +1,14 @@
-export default function BottomBar() {
-    return (
+export default function BottomBar(props) {
+    const {active} = props;
 
-        //FALTA CRIAR A FUNCAO ENABLED (TRUE OU FALSE) E DE CONFIRM ORDER (RENDERIZAR NOVA JANELA)
+    function confirmOrder() {
+        console.log("Order confirmed")
+    }
+    return (
+        //FALTA RENDERIZAR JANELA DE CONFIRM ORDER AO CLICAR NO BOTAO
         <nav class="bottom-bar">
-            <button id="sendButton" onClick={enabled ? confirmOrder : ""}>
-                {enabled ? 
+            <button id="sendButton" className={active ? "send-btn-enable" : ""} onClick={active ? confirmOrder : () => {}}>
+                {active ? 
                 "Fechar pedido" : 
                 "Selecione os 3 itens para fechar o pedido"}
             </button>

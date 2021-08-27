@@ -6,12 +6,18 @@ import { useState } from "react";
 
 export default function App () {
     const foodTypes = ["plate","drink","dessert"];
-    const [sectionSelected, setSectionSelected] = useState(false);
+    const [sectionsSelected, setSectionSelected] = useState(foodTypes.map(() => false));
 
-    const isSectionSelected = (bool) => {
-        setSectionSelected(bool);
-        console.log(sectionSelected)
+
+    //esta funcao informa que houve alguma alteração na FoodSection. A cada alteração ela atualiza se tem algum item selectionado na FoodSection através da variavel bool. 
+    const isSectionSelected = (bool,index) => {
+        setSectionSelected([...sectionsSelected.map((sectionSelected,idx) => {
+            return (index === idx) ? (sectionSelected = bool) : (sectionSelected = sectionSelected)
+        })]);
     }
+
+    const allSectionsSelected = !sectionsSelected.includes(false);
+
     return (
         <>
             <Topbar />
@@ -25,7 +31,7 @@ export default function App () {
                     />))
                 }
             </main>
-            <BottomBar />   
+            <BottomBar active={allSectionsSelected}/>   
         </>
     );
 }
