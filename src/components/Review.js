@@ -8,6 +8,40 @@ export default function Review({sections}) {
     const [visible, setVisible] = useState(true);
     setTimeout(() => setVisible(false),20);
 
+    function confirmOrder() {
+        let strMessage = `Olá, gostaria de fazer o pedido \n - Pratos:\n`//   myPlate.plateName  \n - Bebida:   myDrink.drinkName  \n - Sobremesa:   myDessert.dessertName  \n Total: R$   finalCost.toFixed(2)  \n \n Nome:   customerName  \n Endereço:   customerAddress`;
+        sections.forEach(section => {
+            section.forEach(food => {
+                if (food.type === "plate") {
+                    strMessage = strMessage + `    - ${food.title} \n`
+                }
+            })
+        })
+
+        strMessage = strMessage + `\n- Bebidas:\n`
+        sections.forEach(section => {
+            section.forEach(food => {
+                if (food.type === "drink") {
+                    strMessage = strMessage + `    - ${food.title} \n`
+                }
+            })
+        })
+
+        strMessage = strMessage + `\n- Sobremesas:\n`;
+        sections.forEach(section => {
+            section.forEach(food => {
+                if (food.type === "dessert") {
+                    strMessage = strMessage + `    - ${food.title} \n`
+                }
+            })
+        })
+        strMessage = strMessage + `\nTotal: R$ ${total.toFixed(2).replace('.',',')}\n`;
+
+        const URIencodeMessage = encodeURIComponent(strMessage);
+        const wppStr = "https://wa.me/5521967670121?text=" + URIencodeMessage;
+        window.open(wppStr);
+    }
+
     let total = 0;
     return (
         <>
@@ -30,7 +64,9 @@ export default function Review({sections}) {
                         <strong>{`R$ ${total.toFixed(2).replace('.',',')}`}</strong>
                     </div>
 
-                    <button class="sendOrder" onclick="confirmOrder()">Tudo certo, pode pedir!</button>
+                    <Link to="/">
+                        <button class="sendOrder" onClick={confirmOrder}>Tudo certo, pode pedir!</button>
+                    </Link>
                     <Link to="/">
                         <button class="cancel">Cancelar</button>
                     </Link>
