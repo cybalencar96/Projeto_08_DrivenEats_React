@@ -1,4 +1,6 @@
 const vars = {
+    foodTypes: ["plate","drink","dessert"],
+
     foods: [
         {
             type:"plate",
