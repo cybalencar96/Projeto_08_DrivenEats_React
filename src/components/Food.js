@@ -3,36 +3,50 @@ import {useState} from 'react'
 export default function Food(props) {
 
     const {
+        foodCount,
+        attributes,
+        updateQty
+    } = props
+
+    const {
         title,
         text,
         price,
-    } = props.attributes
-
+        myKey
+    } = attributes
+    let {qty} = attributes;
+    
     const priceFormating = `R$ ${price.toFixed(2).replace('.',',')}`;
     const [select, setSelect] = useState(false);
     
     //Seleciona o item e sinaliza para sua FoodSection que foi selecionado ou desselecionado
     function toggleSelect() {
         setSelect(!select);
-        props.foodCount(!select);
+        foodCount(!select,myKey,qty);
     }
 
-    const [qty, setQty] = useState(1);
+    const [qtyState, setQtyState] = useState(1);
 
     function changeQty(op) {
         if (op === "-") {
-            if (qty > 1) setQty(qty-1);
-            if (qty === 1) toggleSelect();
+            if (qtyState > 1) {
+                setQtyState(qtyState-1);
+                qty--;
+            updateQty(qty,myKey);
+            };
+            if (qtyState === 1) toggleSelect();
             return;
         }
-        setQty(qty+1);
+        setQtyState(qtyState+1);
+        qty++;
+        updateQty(qty,myKey);
     }
 
     function RenderQtyButtons() {
         return (
             <div className="qtyContainer">
                 <button className="qtyButton qty-remove" onClick={() => changeQty("-")}>-</button>
-                <span>{qty}</span>
+                <span>{qtyState}</span>
                 <button className="qtyButton qty-add" onClick={() => changeQty("+")}>+</button>
             </div>
         )

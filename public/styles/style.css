@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+a {
+    text-decoration: none;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #EEEEEE;
@@ -157,19 +161,40 @@ main > div:last-child {
     justify-content: center;
 }
 
-.bottom-bar button {
-    width: 80%;
-    height: 61px;
-    border-radius: 50px;
-    background-color: #CBCBCB;
-    border: none;
+.link {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.send-btn-disable {
     color: white;
     font-size: 20px;
     line-height: 24px;
     letter-spacing: 1.8%;
+    width: 80%;
+
+    border: none;
     padding: 0 30px;
+    height: 61px;
+    border-radius: 50px;
+    background-color: #CBCBCB;
 }
 
+.send-btn-enable {
+    color: white;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 1.8%;
+    width: 80%;
+    border: none;
+    padding: 0 30px;
+    height: 61px;
+    border-radius: 50px;
+    background-color: #32B72F;
+}
 
 
 /* --- BEGGINING CONFIRM ORDER --- */
@@ -193,7 +218,6 @@ main > div:last-child {
 
 .confirm-order > div {
     width: 90%;
-    height: 360px;
     background-color: #50D074;
     border-radius: 9px;  
     text-align: center;
@@ -255,7 +279,7 @@ main > div:last-child {
 
 .confirm-order .cancel {
     display: block;
-    margin: 0 auto;
+    margin: 0 auto 20px auto;
 
     color: white;
     background-color: #50D074;
@@ -307,6 +331,4 @@ main > div:last-child {
     opacity: 0;
 }
 
-.bottom-bar .send-btn-enable {
-    background-color: #32B72F;
-}
+
