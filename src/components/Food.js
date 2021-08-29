@@ -14,18 +14,23 @@ export default function Food(props) {
         price,
         myKey
     } = attributes
+
     let {qty} = attributes;
-    
     const priceFormating = `R$ ${price.toFixed(2).replace('.',',')}`;
     const [select, setSelect] = useState(false);
+    const [qtyState, setQtyState] = useState(1);
     
     //Seleciona o item e sinaliza para sua FoodSection que foi selecionado ou desselecionado
     function toggleSelect() {
+        if (!select) {
+            setQtyState(1);
+            qty = 1;
+        }
         setSelect(!select);
         foodCount(!select,myKey,qty);
+        
     }
 
-    const [qtyState, setQtyState] = useState(1);
 
     function changeQty(op) {
         if (op === "-") {

@@ -36,7 +36,6 @@ export default function FoodSection(props) {
         foodsSelected.forEach(food => {
             if (food.myKey === key) food.qty = qty;
         });
-
         updateSectionInfos(foodsSelected,myKey);
     }
 

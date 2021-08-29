@@ -6,7 +6,7 @@ export default function BottomBar(props) {
     return (
         //FALTA RENDERIZAR JANELA DE CONFIRM ORDER AO CLICAR NO BOTAO
         <nav class="bottom-bar">
-            <Link to="/revisar" className="link">
+            <Link to={active ? `/revisar` : "/"} className="link">
                 <button id="sendButton" className={active ? "send-btn-enable" : "send-btn-disable"}>
                     {active ? 
                     "Fechar pedido" : 

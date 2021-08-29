@@ -12,13 +12,13 @@ export default function ReviewButtons({sections, total}) {
         sections.forEach(section => {
             section.forEach(food => {
                 if (food.type === "plate") {
-                    platesMsg = platesMsg + `    - ${food.title} \n`
+                    platesMsg = platesMsg + `    - ${food.title}  x${food.qty}\n`
                 }
                 if (food.type === "drink") {
-                    drinksMsg = drinksMsg + `    - ${food.title} \n`
+                    drinksMsg = drinksMsg + `    - ${food.title} x${food.qty}\n`
                 }
                 if (food.type === "dessert") {
-                   dessertsMsg = dessertsMsg + `    - ${food.title} \n`
+                   dessertsMsg = dessertsMsg + `    - ${food.title} x${food.qty}\n`
                 }
             })
         })
