@@ -3,12 +3,12 @@ import ReviewFood from "./ReviewFood";
 import ReviewButtons from "./ReviewButtons";
 
 export default function Review({sections}) {
-    //forma de mostrar a tela gradativamente
     const [visible, setVisible] = useState(true);
+    let total = 0;
+    
+    //forma de mostrar a tela gradativamente
     setTimeout(() => setVisible(false),20);
     
-    let total = 0;
-
     return (
         <>
             <div class={"confirm-order " + (visible ? "visuallyHidden" : "")} id="confirmWindow">

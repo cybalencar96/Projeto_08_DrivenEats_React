@@ -14,9 +14,9 @@ export default function FoodSection(props) {
     //atualizará quantos itens dessa sessão foram selecionados
     const foodCount = (selectTrue, key, qty) => {
         foods[key].qty = qty;
-        //guardando em variável local também pois usando a variavel de estado o React não atualizava o componente pai da Section corretamente
+
         let localFoodsSelected;
-        //mesmo com a variavel local preciso da variavel de estado para armazenar a informação de qtd para esta section em especifico. Ao utilizar variável global,  a contagem era uma unica para todas as sessões
+
         if (selectTrue) {
             localFoodsSelected = [...foodsSelected,foods[key]];
             setFoodsSelected([...foodsSelected,foods[key]]);
@@ -45,7 +45,6 @@ export default function FoodSection(props) {
             <div className="itens">
                 {
                     foods.map((food,index) => {
-                            //adicionando o atributo myKey no array foods para quando eu atualizar a var de estado "foodsSelected" com o arr Foods (line22), eu ja ter a key nela. 
                             food.myKey = index;
                             return <Food updateQty={updateQty} foodCount={foodCount} attributes={food}/>
                     })

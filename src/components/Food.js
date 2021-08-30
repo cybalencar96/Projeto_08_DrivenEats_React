@@ -20,7 +20,6 @@ export default function Food(props) {
     const [select, setSelect] = useState(false);
     const [qtyState, setQtyState] = useState(1);
     
-    //Seleciona o item e sinaliza para sua FoodSection que foi selecionado ou desselecionado
     function toggleSelect() {
         if (!select) {
             setQtyState(1);
